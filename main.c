@@ -1,10 +1,30 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include <math.h>
-#include <string.h>
-#define SEED 35791246
+#include <omp.h>
+#include <time.h>
+#include <sys/time.h>
+#include <omp.h>
 
-main(int argc, char* argv)
+#define SEED 35791246
+// Returns a random value between -1 and 1
+
+
+long double Calculate_Pi_Sequential(long long number_of_tosses) {
+    unsigned int seed = (unsigned int) time(NULL);
+    printf("n =" ,number_of_tosses);
+    return 0;
+}
+
+long double Calculate_Pi_Parallel(long long number_of_tosses) {
+#pragma omp1 parallel num_threads(omp_get_max_threads())
+    {
+        unsigned int seed = (unsigned int) time(NULL) + (unsigned int) omp_get_thread_num();
+        printf("n1 =" ,number_of_tosses);
+    }
+    return 0;
+}
+
+int main(int argc, char *argv[])
 {
    int niter=0;
    double xCoordinate,yCoordinate;
@@ -16,7 +36,6 @@ main(int argc, char* argv)
    scanf("%d",&niter);
    /* initialize random numbers */
    /*get rand values */
-
    rand();
    count=0;
    for (i=0; i<niter; i++) {
@@ -24,7 +43,13 @@ main(int argc, char* argv)
     yCoordinate = (double)rand()/RAND_MAX;
     z = xCoordinate*xCoordinate+yCoordinate*yCoordinate;
     if (z<=1) count++;
-}
+   }
+
+long double sequential_pi = Calculate_Pi_Sequential(niter);
+long double parallel_pi = Calculate_Pi_Parallel(niter);
 pi=(double)count/niter*4;
 printf("# of trials= %d , estimate of pi is %g \n",niter,pi);
+    printf("π = %.10Lf (sequential)\n", sequential_pi);
+    printf("π = %.10Lf (parallel)", parallel_pi);
+    return 0;
 }
