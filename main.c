@@ -15,6 +15,8 @@ main(int argc, char* argv)
    printf("Enter the number of iterations used to estimate pi: ");
    scanf("%d",&niter);
    /* initialize random numbers */
+   /*get rand values */
+
    rand();
    count=0;
    for (i=0; i<niter; i++) {
