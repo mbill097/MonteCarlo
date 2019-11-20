@@ -26,14 +26,14 @@ long double Calculate_Pi_Parallel(long long number_of_tosses) {
 
 int main(int argc, char *argv[])
 {
-   int niter=0;
+   int niter=3;
    double xCoordinate,yCoordinate;
    int i,count=0; /* # of points in the 1st quadrant of unit circle */
    double z;
    double pi;
-   printf("This program to calculate the value of the mathematical constant PI using the Monte Carlo method.");
+  /* printf("This program to calculate the value of the mathematical constant PI using the Monte Carlo method.");
    printf("Enter the number of iterations used to estimate pi: ");
-   scanf("%d",&niter);
+   scanf("%d",&niter);*/
    /* initialize random numbers */
    /*get rand values */
    rand();
