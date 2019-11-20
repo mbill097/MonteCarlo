@@ -17,6 +17,4 @@ time.h
 -
 sys/time.h
 -
-omp.h
--
 
